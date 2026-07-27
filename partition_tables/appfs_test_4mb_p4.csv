@@ -1,0 +1,6 @@
+nvs,	data,	nvs,	0x19000,	16K,
+otadata,	data,	ota,	0x1D000,	8K,
+phy_init,	data,	phy,	0x1F000,	4K,
+ota_0,	0,	ota_0,	0x20000,	512K,
+ota_1,	0,	ota_1,	0xA0000,	512K,
+appfs,	0x43,	3,	0x120000,	2048K,
