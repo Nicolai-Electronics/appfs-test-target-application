@@ -29,12 +29,16 @@ ifeq ($(DEVICE), esp32)
 IDF_TARGET ?= esp32
 else ifeq ($(DEVICE), esp32c3)
 IDF_TARGET ?= esp32c3
+else ifeq ($(DEVICE), esp32c5)
+IDF_TARGET ?= esp32c5
 else ifeq ($(DEVICE), esp32c6)
 IDF_TARGET ?= esp32c6
+else ifeq ($(DEVICE), esp32c61)
+IDF_TARGET ?= esp32c61
+else ifeq ($(DEVICE), esp32h2)
+IDF_TARGET ?= esp32h2
 else ifeq ($(DEVICE), esp32p4)
 IDF_TARGET ?= esp32p4
-else ifeq ($(DEVICE), esp32s2)
-IDF_TARGET ?= esp32s2
 else ifeq ($(DEVICE), esp32s3)
 IDF_TARGET ?= esp32s3
 else
@@ -258,8 +262,10 @@ main/fat/icons/%.png: main/static/icons/%.svg
 buildall:
 	$(MAKE) build DEVICE=esp32
 	$(MAKE) build DEVICE=esp32c3
+	$(MAKE) build DEVICE=esp32c5
 	$(MAKE) build DEVICE=esp32c6
-	$(MAKE) build DEVICE=esp32s2
+	$(MAKE) build DEVICE=esp32c61
+	$(MAKE) build DEVICE=esp32h2
 	$(MAKE) build DEVICE=esp32s3
 	$(MAKE) build DEVICE=esp32p4
 
