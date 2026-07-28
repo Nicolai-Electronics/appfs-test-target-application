@@ -5,6 +5,8 @@ idf_component_register(
 		"main.c"
 	INCLUDE_DIRS
 		"."
+	REQUIRES
+		appfs
 )
 
 idf_build_set_property(COMPILE_OPTIONS "-Wno-error=unused-variable" APPEND)

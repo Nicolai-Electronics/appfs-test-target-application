@@ -27,6 +27,8 @@ SHELL := /usr/bin/env bash
 
 ifeq ($(DEVICE), esp32)
 IDF_TARGET ?= esp32
+else ifeq ($(DEVICE), esp32c2)
+IDF_TARGET ?= esp32c2
 else ifeq ($(DEVICE), esp32c3)
 IDF_TARGET ?= esp32c3
 else ifeq ($(DEVICE), esp32c5)
@@ -41,12 +43,15 @@ else ifeq ($(DEVICE), esp32p4)
 IDF_TARGET ?= esp32p4
 else ifeq ($(DEVICE), esp32s3)
 IDF_TARGET ?= esp32s3
+else ifeq ($(DEVICE), esp32s31)
+IDF_TARGET ?= esp32s31
+IDF_PREVIEW := --preview
 else
 $(warning "Unknown device, defaulting to ESP32 $(DEVICE)")
 IDF_TARGET ?= esp32
 endif
 
-IDF_PARAMS := -B $(BUILD) -DDEVICE=$(DEVICE) -DSDKCONFIG_DEFAULTS="$(SDKCONFIG_DEFAULTS)" -DSDKCONFIG=$(SDKCONFIG) -DIDF_TARGET=$(IDF_TARGET) -DFAT=$(FAT)
+IDF_PARAMS := $(IDF_PREVIEW) -B $(BUILD) -DDEVICE=$(DEVICE) -DSDKCONFIG_DEFAULTS="$(SDKCONFIG_DEFAULTS)" -DSDKCONFIG=$(SDKCONFIG) -DIDF_TARGET=$(IDF_TARGET) -DFAT=$(FAT)
 
 #####
 
@@ -130,7 +135,7 @@ refreshsdk: removesdk sdk
 
 .PHONY: menuconfig
 menuconfig:
-	source "$(IDF_SOURCE)" && idf.py menuconfig -DDEVICE=$(DEVICE) -DSDKCONFIG_DEFAULTS="$(SDKCONFIG_DEFAULTS)" -DSDKCONFIG=$(SDKCONFIG) -DIDF_TARGET=$(IDF_TARGET)
+	source "$(IDF_SOURCE)" && idf.py $(IDF_PARAMS) menuconfig
 
 # Cleaning
 
@@ -261,12 +266,14 @@ main/fat/icons/%.png: main/static/icons/%.svg
 .PHONY: buildall
 buildall:
 	$(MAKE) build DEVICE=esp32
+	$(MAKE) build DEVICE=esp32c2
 	$(MAKE) build DEVICE=esp32c3
 	$(MAKE) build DEVICE=esp32c5
 	$(MAKE) build DEVICE=esp32c6
 	$(MAKE) build DEVICE=esp32c61
 	$(MAKE) build DEVICE=esp32h2
 	$(MAKE) build DEVICE=esp32s3
+	$(MAKE) build DEVICE=esp32s31
 	$(MAKE) build DEVICE=esp32p4
 
 # Vscode

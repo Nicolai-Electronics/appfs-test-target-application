@@ -1,4 +1,3 @@
 dependencies:
   idf: ">=6.0.2"
-  badgeteam/appfs:
-    version: "=2.0.0"
+  badgeteam/appfs: "=2.1.0"
